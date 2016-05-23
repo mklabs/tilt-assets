@@ -42,17 +42,16 @@ describe('Asset', () => {
       fs.readFile(stream.path, 'utf8', (err, js) => {
         if (err) return done(err);
         assert.ok(/classCallCheck/.test(js));
-        // fs.unlink(stream.path, done);
         done();
       });
     });
 
   });
 
-  it('Compiles CSS using postcss / autoprefixer', () => {
+  it('Compiles CSS using postcss / autoprefixer', (done) => {
     var stream = fs.createWriteStream('test/assets/main.output.css');
 
-    this.assets.browserify(path.join(__dirname, 'assets/main.css'), stream, (err) => {
+    this.assets.postcss(path.join(__dirname, 'assets/main.css'), stream, (err) => {
       if (err) return done(err);
     });
 
@@ -62,7 +61,6 @@ describe('Asset', () => {
         assert.ok(/display: flex/.test(css));
         assert.ok(/display: -ms-flexbox;/.test(css));
         assert.ok(/display: -webkit-box;/.test(css));
-        // fs.unlink(stream.path, done);
         done();
       });
     });

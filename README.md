@@ -1,4 +1,4 @@
-# tilt-assets
+# tilt-assets [![Build Status](https://secure.travis-ci.org/mklabs/tilt-assets.png)](http://travis-ci.org/mklabs/tilt-assets)
 
 > Tiny asset pipeline
 
