@@ -5,7 +5,7 @@
 
 ## Install
 
-    npm i mklabs/tilt-assets -S
+    npm i tilt-assets -S
 
 ## Usage
 
