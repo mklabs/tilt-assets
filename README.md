@@ -31,9 +31,7 @@ server.listen(3000);
 - **dirs** Glob directory patters (must end with a "/". Default: app/assets/)
 - **baseURL** Base URL removed from the incoming request URL (Default: '/assets/')
 
-
 ## API
-
 - [Asset](#asset)
   - [HTTP handler](#asset-http-handler)
 
@@ -59,7 +57,6 @@ stream.on('finish', () => {
   fs.readFile(stream.path, 'utf8', (err, js) => {
     if (err) return done(err);
     assert.ok(/classCallCheck/.test(js));
-    // fs.unlink(stream.path, done);
     done();
   });
 });
@@ -69,7 +66,7 @@ Compiles CSS using postcss / autoprefixer.
 
 ```js
 var stream = fs.createWriteStream('test/assets/main.output.css');
-this.assets.browserify(path.join(__dirname, 'assets/main.css'), stream, (err) => {
+this.assets.postcss(path.join(__dirname, 'assets/main.css'), stream, (err) => {
   if (err) return done(err);
 });
 stream.on('finish', () => {
@@ -78,7 +75,6 @@ stream.on('finish', () => {
     assert.ok(/display: flex/.test(css));
     assert.ok(/display: -ms-flexbox;/.test(css));
     assert.ok(/display: -webkit-box;/.test(css));
-    // fs.unlink(stream.path, done);
     done();
   });
 });
@@ -119,3 +115,4 @@ request(this.server)
   .expect(/display: -webkit-box/)
   .end(done);
 ```
+
