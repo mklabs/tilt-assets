@@ -1,6 +1,6 @@
 {
   "name": "tilt-assets",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Asset pipeline request handler",
   "main": "index.js",
   "scripts": {
