@@ -1,5 +1,5 @@
 
-const Asset = require('./src/asset');
+const Asset = require('./lib/asset');
 
 module.exports = asset;
 asset.Asset = Asset;
