@@ -59,9 +59,8 @@ describe('Asset', () => {
     stream.on('finish', () => {
       fs.readFile(stream.path, 'utf8', (err, css) => {
         if (err) return done(err);
-        assert.ok(/display: flex/.test(css));
-        assert.ok(/display: -ms-flexbox;/.test(css));
-        assert.ok(/display: -webkit-box;/.test(css));
+        assert.ok(/display:flex/.test(css));
+        assert.ok(/display:-webkit-box;/.test(css));
         done();
       });
     });
@@ -79,7 +78,7 @@ describe('Asset', () => {
       request(this.server)
         .get('/main.js')
         // Check basic output
-        .expect(/return App/)
+        .expect(/new App/)
         // Check ES6 compilation
         .expect(/classCallCheck/)
         .end(done);
@@ -89,10 +88,13 @@ describe('Asset', () => {
       request(this.server)
         .get('/main.css')
         // Check basic output
-        .expect(/display: flex/)
+        .expect(/display:flex/)
         // Check autoprefixer output
-        .expect(/display: -ms-flexbox/)
-        .expect(/display: -webkit-box/)
+        .expect(/display:-webkit-box/)
+        // Check nanocss config
+        .expect(/Keep comments/)
+        // Check sourcemap option
+        .expect(/sourceMappingURL/)
         .end(done);
     });
 

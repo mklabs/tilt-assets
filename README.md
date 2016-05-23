@@ -33,11 +33,25 @@ server.listen(3000);
 
 ### Browserify
 
-Browserify is the default handler for `.js` files, using Babelify transform.
+[Browserify](https://github.com/substack/node-browserify#browserify) is the default handler for `.js` files.
 
 You can further configure browserify transforms with a [package.json
 `browserify.transform`](https://github.com/substack/browserify-handbook#browserifytransform-field)
 field.
+
+For instance, to configure browserify to compile into ES6, make sure you've
+installed the [babelify transform](https://github.com/babel/babelify) and
+[babel-preset-es2015](https://www.npmjs.com/package/babel-preset-es2015).
+
+```json
+"browserify": {
+  "transform": [
+    ["babelify", { "presets": "es2015" }]
+  ]
+}
+```
+
+**Note:** Presets and plugins need to be installed as separate modules.
 
 Other [browserify
 options](https://github.com/substack/node-browserify#browserifyfiles--opts) can
@@ -48,6 +62,52 @@ For instance, to add a source map to the end of the bundle:
 ```json
 "browserify": {
   "debug": true
+}
+```
+
+### PostCSS
+
+[PostCSS](https://github.com/postcss/postcss) is the default handler for `.css` files.
+
+You can configure PostCSS [plugins](https://github.com/postcss/postcss#plugins)
+with a package.json `postcss.use` field.
+
+```json
+"postcss": {
+  "use": ["autoprefixer", "cssnano"]
+}
+```
+
+Plugin configuratons can be defined using plugin names as keys.
+
+```json
+"postcss": {
+  "use": ["autoprefixer", "cssnano"],
+
+  "autoprefixer": {
+    "browsers": "> 5%"
+  },
+
+  "cssnano": {
+    "discardComments": false
+  }
+}
+```
+
+**Note:** PostCSS plugins need to be installed as separate modules. For the
+above example to work, you'd need to install
+[autoprefixer](https://github.com/postcss/autoprefixer) and
+[cssnano](https://github.com/ben-eb/cssnano).
+
+Additionnaly, other [postcss configuration
+options](https://github.com/postcss/postcss/blob/master/docs/api.md#processorprocesscss-opts)
+can be specified using package.json `postcss` field.
+
+For instance, to add a source map to the end of the file:
+
+```json
+"postcss": {
+  "map": true
 }
 ```
 
