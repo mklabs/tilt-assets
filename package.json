@@ -6,6 +6,7 @@
   "scripts": {
     "babel": "babel lib/ -d src",
     "test": "mocha -R spec",
+    "pretest": "npm run babel",
     "watch": "watchd package.json index.js lib/* test/* -c 'npm run babel' -c 'npm test'",
     "docs": "mocha -R markdown >> README.md"
   },
