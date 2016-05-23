@@ -31,6 +31,26 @@ server.listen(3000);
 - **dirs** Glob directory patters (must end with a "/". Default: app/assets/)
 - **baseURL** Base URL removed from the incoming request URL (Default: '/assets/')
 
+### Browserify
+
+Browserify is the default handler for `.js` files, using Babelify transform.
+
+You can further configure browserify transforms with a [package.json
+`browserify.transform`](https://github.com/substack/browserify-handbook#browserifytransform-field)
+field.
+
+Other [browserify
+options](https://github.com/substack/node-browserify#browserifyfiles--opts) can
+be configured using `browserify` field.
+
+For instance, to add a source map to the end of the bundle:
+
+```json
+"browserify": {
+  "debug": true
+}
+```
+
 ## API
 - [Asset](#asset)
   - [HTTP handler](#asset-http-handler)

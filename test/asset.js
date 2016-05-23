@@ -42,6 +42,7 @@ describe('Asset', () => {
       fs.readFile(stream.path, 'utf8', (err, js) => {
         if (err) return done(err);
         assert.ok(/classCallCheck/.test(js));
+        assert.ok(/sourceMappingURL/.test(js));
         done();
       });
     });
