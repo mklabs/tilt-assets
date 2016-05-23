@@ -8,7 +8,8 @@
     "test": "mocha -R spec",
     "pretest": "npm run babel",
     "watch": "watchd package.json index.js lib/* test/* -c 'npm test'",
-    "docs": "mocha -R markdown >> README.md"
+    "docs": "mocha -R markdown >> README.md",
+    "release": "standard-version -m '%s' && git push origin master --tags && npm publish"
   },
   "dependencies": {
     "browserify": "^13.0.1",
@@ -26,6 +27,7 @@
     "cssnano": "^3.6.2",
     "eslintify": "^2.0.1",
     "mocha": "^2.4.5",
+    "standard-version": "^2.2.1",
     "supertest": "^1.2.0",
     "watchd": "github:mklabs/watchd"
   },
